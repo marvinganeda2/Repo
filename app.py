@@ -5,7 +5,6 @@ from PIL import Image, ImageOps
 import numpy as np
 
 @st.cache(allow_output_mutation=True)
-@tf.function
 def load_model():
     model = tf.keras.models.load_model('cnn_model3.h5')
     return model
