@@ -21,7 +21,8 @@ def import_and_predict(image_data, model):
     image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
     image = ImageOps.grayscale(image)
     img = np.asarray(image)
-    img = img.reshape((1, size[0], size[1], 1))  # Reshape to (batch_size, 28, 28, 1)
+    img = img.reshape((1, size[0], size[1], 1))
+    img = img.astype(np.float32) / 255.0  # Normalize the image
     prediction = model.predict(img)
     return prediction
 
