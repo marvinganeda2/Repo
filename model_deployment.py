@@ -24,6 +24,20 @@ file = st.file_uploader("Choose braille photo from computer", type=["jpg", "png"
    #img_reshape = img[np.newaxis, ...]
     #prediction = model.predict(img_reshape)
     #return prediction
+def import_and_predict(image_data, model):
+    size = (28, 28)
+    
+    image -ImageOPs.fit(image_data, size, Image.ANTIALIAS)
+    img = np.asarray(image)
+    img = cv2.resize(img, (28, 28), interpolation=cv2.INTER_NEAREST)
+    
+    if img.ndim == 3 and img.shape[2] == 3:
+        img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+    
+    img_reshape = img.reshape((1,) + img.shape + (1,))
+    
+    predictiction = model.predict(img_reshape)
+    return prediction
 
 if file is None:
     st.text("Please upload an image file")
