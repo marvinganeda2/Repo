@@ -16,34 +16,17 @@ st.write("# Braille Classification System")
 
 file = st.file_uploader("Choose braille photo from computer", type=["jpg", "png"])
 
-#def import_and_predict(image_data, model):
-    #size = (28, 28)
-    #image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
-    #image = ImageOps.grayscale(image)
-    #img = np.asarray(image)
-    #img = img.reshape((size[0], size[1]))  
-    #img_reshape = img[np.newaxis, ...]
-    #prediction = model.predict(img_reshape)
-    #return prediction
-
 def import_and_predict(image_data, model):
     size = (28, 28)
-    
-    # Resize the image to the expected input shape of the model
     image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
+    image = ImageOps.grayscale(image)
     img = np.asarray(image)
-    img = cv2.resize(img, (28, 28), interpolation=cv2.INTER_NEAREST)
-    
-    # Convert the image to grayscale if necessary
-    if img.ndim == 3 and img.shape[2] == 3:
-        img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-
-    # Reshape the image to add a channel dimension
-    img_reshape = img.reshape((1,) + img.shape + (1,))
-
-    # Make predictions using the Keras model
+    img = img.reshape((size[0], size[1]))  
+    img_reshape = img[np.newaxis, ...]
     prediction = model.predict(img_reshape)
     return prediction
+
+
 
     
     
