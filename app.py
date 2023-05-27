@@ -11,13 +11,16 @@ def load_model():
 
 @tf.function
 def import_and_predict(image_data, model):
+    print("Image data shape:", image_data.shape)
     size = (28, 28)
     image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
     image = ImageOps.grayscale(image)
     img = np.asarray(image)
     img = img.reshape((1, size[0], size[1], 1))
     img = img.astype(np.float32) / 255.0  # Normalize the image
+    print("Input image shape:", img.shape)
     prediction = model.predict(img)
+    print("Prediction shape:", prediction.shape)
     return prediction
 
 model = load_model()
