@@ -32,7 +32,7 @@ def import_and_predict(image_data, model):
     # Resize the image to the expected input shape of the model
     image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
     img = np.asarray(image)
-    img = cv2.resize(img, (128, 128), interpolation=cv2.INTER_NEAREST)
+    img = cv2.resize(img, (28, 28), interpolation=cv2.INTER_NEAREST)
     
     # Convert the image to grayscale if necessary
     if img.ndim == 3 and img.shape[2] == 3:
