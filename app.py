@@ -15,6 +15,7 @@ st.write("# Braille Classification System")
 
 file = st.file_uploader("Choose braille photo from computer", type=["jpg", "png"])
 
+@tf.function
 def import_and_predict(image_data, model):
     size = (28, 28)
     image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
