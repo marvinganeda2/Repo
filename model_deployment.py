@@ -27,7 +27,7 @@ file = st.file_uploader("Choose braille photo from computer", type=["jpg", "png"
 def import_and_predict(image_data, model):
     size = (28, 28)
     
-    image -ImageOPs.fit(image_data, size, Image.ANTIALIAS)
+    image -ImageOps.fit(image_data, size, Image.ANTIALIAS)
     img = np.asarray(image)
     img = cv2.resize(img, (28, 28), interpolation=cv2.INTER_NEAREST)
     
