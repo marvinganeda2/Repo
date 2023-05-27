@@ -16,29 +16,16 @@ st.write("# Braille Classification System")
 
 file = st.file_uploader("Choose braille photo from computer", type=["jpg", "png"])
 
-#def import_and_predict(image_data, model):
-    #size = (28, 28,3)
-    #image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
-    #image = ImageOps.grayscale(image)
-    #img = np.asarray(image)
-    #img = img.reshape((size[0], size[1], 1))  
-   #img_reshape = img[np.newaxis, ...]
-    #prediction = model.predict(img_reshape)
-    #return prediction
 def import_and_predict(image_data, model):
-    size = (28, 28)
-    
-    image -ImageOps.fit(image_data, size, Image.ANTIALIAS)
+    size = (28, 28,3)
+    image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
+    image = ImageOps.grayscale(image)
     img = np.asarray(image)
-    img = cv2.resize(img, (28, 28), interpolation=cv2.INTER_NEAREST)
-    
-    if img.ndim == 3 and img.shape[2] == 3:
-        img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-    
-    img_reshape = img.reshape((1,) + img.shape + (1,))
-    
-    predictiction = model.predict(img_reshape)
+    img = img.reshape((size[0], size[1], 1))  
+    img_reshape = img[np.newaxis, ...]
+    prediction = model.predict(img_reshape)
     return prediction
+
 
 if file is None:
     st.text("Please upload an image file")
