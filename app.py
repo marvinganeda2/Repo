@@ -9,12 +9,6 @@ def load_model():
     model = tf.keras.models.load_model('cnn_model3.h5')
     return model
 
-model = load_model()
-
-st.write("# Braille Classification System")
-
-file = st.file_uploader("Choose braille photo from computer", type=["jpg", "png"])
-
 @tf.function
 def import_and_predict(image_data, model):
     size = (28, 28)
@@ -26,10 +20,12 @@ def import_and_predict(image_data, model):
     prediction = model.predict(img)
     return prediction
 
+model = load_model()
 
+st.write("# Braille Classification System")
 
-    
-    
+file = st.file_uploader("Choose braille photo from computer", type=["jpg", "png"])
+
 if file is None:
     st.text("Please upload an image file")
 else:
